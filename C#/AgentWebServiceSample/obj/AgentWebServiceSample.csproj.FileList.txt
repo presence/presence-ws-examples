@@ -1,0 +1,9 @@
+obj\Debug\ResolveAssemblyReference.cache
+obj\Debug\AgentWebServiceSample.Properties.Resources.resources
+obj\Debug\AgentWebServiceSample.SimpleAgent.resources
+obj\Debug\AgentWebServiceSample.csproj.GenerateResource.Cache
+bin\Debug\AgentWebServiceSample.exe.config
+bin\Debug\AgentWebServiceSample.exe
+bin\Debug\AgentWebServiceSample.pdb
+obj\Debug\AgentWebServiceSample.exe
+obj\Debug\AgentWebServiceSample.pdb

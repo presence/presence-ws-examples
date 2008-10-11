@@ -1,0 +1,894 @@
+<?xml version="1.0" encoding="utf-8"?>
+<definitions xmlns:tns="http://tempuri.org/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:ro="urn:AgentLibrary" name="AgentLibrary" targetNamespace="http://tempuri.org/" xmlns="http://schemas.xmlsoap.org/wsdl/">
+  <types>
+    <xs:schema xmlns="urn:AgentLibrary" targetNamespace="urn:AgentLibrary">
+      <xs:complexType name="TAgentEvent">
+        <xs:sequence>
+          <xs:element name="EventCode" type="xs:int" />
+          <xs:element name="EventFields" type="ro:TAgentEventFieldList" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="TAgentEventField">
+        <xs:sequence>
+          <xs:element name="Field" type="xs:string" />
+          <xs:element name="Value" type="xs:anyType" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="TWSServiceInfo">
+        <xs:sequence>
+          <xs:element name="ServiceId" type="xs:int" />
+          <xs:element name="ServiceName" type="xs:string" />
+          <xs:element name="ServiceState" type="xs:int" />
+          <xs:element name="ServiceType" type="xs:int" />
+          <xs:element name="ServiceIntegrationType" type="xs:int" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="TWSSessionInfo">
+        <xs:sequence>
+          <xs:element name="AgentName" type="xs:string" />
+          <xs:element name="ServerName" type="xs:string" />
+          <xs:element name="StationNumber" type="xs:int" />
+          <xs:element name="ServiceInfoList" type="ro:TWSServiceInfoList" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="TWSAgentContact">
+        <xs:sequence>
+          <xs:element name="ServiceId" type="xs:int" />
+          <xs:element name="ContactType" type="xs:int" />
+          <xs:element name="CallState" type="xs:int" />
+          <xs:element name="CallId" type="xs:int" />
+          <xs:element name="UCID" type="xs:string" />
+          <xs:element name="Skill" type="xs:int" />
+          <xs:element name="SkillDesc" type="xs:string" />
+          <xs:element name="VDN" type="xs:int" />
+          <xs:element name="VDNDesc" type="xs:string" />
+          <xs:element name="ContactId" type="xs:int" />
+          <xs:element name="OperatorCode" type="xs:int" />
+          <xs:element name="Phone" type="xs:string" />
+          <xs:element name="Captured" type="xs:boolean" />
+          <xs:element name="CapturedLogin" type="xs:int" />
+          <xs:element name="EstablishedURL" type="xs:string" />
+          <xs:element name="ClosedURL" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="TWSStopReason">
+        <xs:sequence>
+          <xs:element name="CodReason" type="xs:int" />
+          <xs:element name="Description" type="xs:string" />
+          <xs:element name="CodCMS" type="xs:int" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="TWSStopInfo">
+        <xs:sequence>
+          <xs:element name="StopReasonList" type="ro:TWSStopReasonsList" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="TWSQCode">
+        <xs:sequence>
+          <xs:element name="Code" type="xs:int" />
+          <xs:element name="ID" type="xs:int" />
+          <xs:element name="Description" type="xs:string" />
+          <xs:element name="IsGroup" type="xs:int" />
+          <xs:element name="ParentID" type="xs:int" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="TWSQCodeInfo">
+        <xs:sequence>
+          <xs:element name="QCodeList" type="ro:TWSQCodeInfoList" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="TWSQInfoInbound">
+        <xs:sequence>
+          <xs:element name="ContactCaptured" type="xs:boolean" />
+          <xs:element name="CapturedDateTime" type="xs:dateTime" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="TWSQInfoOutbound">
+        <xs:sequence>
+          <xs:element name="Phone" type="xs:string" />
+          <xs:element name="Name" type="xs:string" />
+          <xs:element name="Comments" type="xs:string" />
+          <xs:element name="DateSchedule" type="xs:dateTime" />
+          <xs:element name="TimeSchedule" type="xs:dateTime" />
+          <xs:element name="Captured" type="xs:boolean" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="TWSQInfoMail">
+        <xs:sequence>
+          <xs:element name="MailCaptured" type="xs:boolean" />
+          <xs:element name="MailCapturedDateTime" type="xs:dateTime" />
+          <xs:element name="MoveToMailboxId" type="xs:int" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="TWSAgentContactInbound">
+        <xs:sequence>
+          <xs:element name="DNIS" type="xs:string" />
+          <xs:element name="ServiceId" type="xs:int" />
+          <xs:element name="ContactType" type="xs:int" />
+          <xs:element name="CallState" type="xs:int" />
+          <xs:element name="CallId" type="xs:int" />
+          <xs:element name="UCID" type="xs:string" />
+          <xs:element name="Skill" type="xs:int" />
+          <xs:element name="SkillDesc" type="xs:string" />
+          <xs:element name="VDN" type="xs:int" />
+          <xs:element name="VDNDesc" type="xs:string" />
+          <xs:element name="ContactId" type="xs:int" />
+          <xs:element name="OperatorCode" type="xs:int" />
+          <xs:element name="Phone" type="xs:string" />
+          <xs:element name="Captured" type="xs:boolean" />
+          <xs:element name="CapturedLogin" type="xs:int" />
+          <xs:element name="EstablishedURL" type="xs:string" />
+          <xs:element name="ClosedURL" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="TWSAgentContactOutbound">
+        <xs:sequence>
+          <xs:element name="ID" type="xs:int" />
+          <xs:element name="ServiceId" type="xs:int" />
+          <xs:element name="Name" type="xs:string" />
+          <xs:element name="Phone" type="xs:string" />
+          <xs:element name="SourceID" type="xs:int" />
+          <xs:element name="LastAgent" type="xs:int" />
+          <xs:element name="LastQCode" type="xs:int" />
+          <xs:element name="Captured" type="xs:boolean" />
+          <xs:element name="CapturingAgent" type="xs:int" />
+          <xs:element name="Comments" type="xs:string" />
+          <xs:element name="ServiceId" type="xs:int" />
+          <xs:element name="ContactType" type="xs:int" />
+          <xs:element name="CallState" type="xs:int" />
+          <xs:element name="CallId" type="xs:int" />
+          <xs:element name="UCID" type="xs:string" />
+          <xs:element name="Skill" type="xs:int" />
+          <xs:element name="SkillDesc" type="xs:string" />
+          <xs:element name="VDN" type="xs:int" />
+          <xs:element name="VDNDesc" type="xs:string" />
+          <xs:element name="ContactId" type="xs:int" />
+          <xs:element name="OperatorCode" type="xs:int" />
+          <xs:element name="Phone" type="xs:string" />
+          <xs:element name="Captured" type="xs:boolean" />
+          <xs:element name="CapturedLogin" type="xs:int" />
+          <xs:element name="EstablishedURL" type="xs:string" />
+          <xs:element name="ClosedURL" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="TWSQInfo">
+        <xs:sequence>
+          <xs:element name="QCode" type="xs:int" />
+          <xs:element name="cType" type="xs:int" />
+          <xs:element name="InfoInbound" type="ro:TWSQInfoInbound" />
+          <xs:element name="InfoOutbound" type="ro:TWSQInfoOutbound" />
+          <xs:element name="InfoMail" type="ro:TWSQInfoMail" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="TWSCall">
+        <xs:sequence>
+          <xs:element name="CallID" type="xs:int" />
+          <xs:element name="CallingDevice" type="xs:string" />
+          <xs:element name="CalledDevice" type="xs:string" />
+          <xs:element name="ServiceCustomerPhoneDesc" type="xs:string" />
+          <xs:element name="CallType" type="xs:int" />
+          <xs:element name="State" type="xs:int" />
+          <xs:element name="Selected" type="xs:int" />
+          <xs:element name="InConference" type="xs:int" />
+          <xs:element name="StartTimeStamp" type="xs:dateTime" />
+          <xs:element name="StateTimeStamp" type="xs:dateTime" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="TAgentEventList">
+        <xs:complexContent mixed="false">
+          <xs:restriction base="soapenc:Array">
+            <xs:sequence />
+            <xs:attribute xmlns:n1="http://schemas.xmlsoap.org/wsdl/" n1:arrayType="ro:TAgentEvent[]" ref="soapenc:arrayType" />
+          </xs:restriction>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="TAgentEventFieldList">
+        <xs:complexContent mixed="false">
+          <xs:restriction base="soapenc:Array">
+            <xs:sequence />
+            <xs:attribute xmlns:n1="http://schemas.xmlsoap.org/wsdl/" n1:arrayType="ro:TAgentEventField[]" ref="soapenc:arrayType" />
+          </xs:restriction>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="TWSServiceInfoList">
+        <xs:complexContent mixed="false">
+          <xs:restriction base="soapenc:Array">
+            <xs:sequence />
+            <xs:attribute xmlns:n1="http://schemas.xmlsoap.org/wsdl/" n1:arrayType="ro:TWSServiceInfo[]" ref="soapenc:arrayType" />
+          </xs:restriction>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="TWSStopReasonsList">
+        <xs:complexContent mixed="false">
+          <xs:restriction base="soapenc:Array">
+            <xs:sequence />
+            <xs:attribute xmlns:n1="http://schemas.xmlsoap.org/wsdl/" n1:arrayType="ro:TWSStopReason[]" ref="soapenc:arrayType" />
+          </xs:restriction>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="TWSQCodeInfoList">
+        <xs:complexContent mixed="false">
+          <xs:restriction base="soapenc:Array">
+            <xs:sequence />
+            <xs:attribute xmlns:n1="http://schemas.xmlsoap.org/wsdl/" n1:arrayType="ro:TWSQCode[]" ref="soapenc:arrayType" />
+          </xs:restriction>
+        </xs:complexContent>
+      </xs:complexType>
+    </xs:schema>
+  </types>
+  <message name="AgentService_SumRequest">
+    <part name="A" type="xs:int" />
+    <part name="B" type="xs:int" />
+  </message>
+  <message name="AgentService_SumResponse">
+    <part name="Result" type="xs:int" />
+  </message>
+  <message name="AgentService_GetServerTimeRequest" />
+  <message name="AgentService_GetServerTimeResponse">
+    <part name="Result" type="xs:dateTime" />
+  </message>
+  <message name="AgentService_LoginRequest">
+    <part name="AgentLogin" type="xs:int" />
+    <part name="Password" type="xs:string" />
+    <part name="Station" type="xs:int" />
+    <part name="ClearCalls" type="xs:boolean" />
+  </message>
+  <message name="AgentService_LoginResponse">
+    <part name="Result" type="xs:int" />
+  </message>
+  <message name="AgentService_LogoutRequest">
+    <part name="AgentLogin" type="xs:int" />
+    <part name="ReasonCode" type="xs:int" />
+  </message>
+  <message name="AgentService_LogoutResponse">
+    <part name="Result" type="xs:int" />
+  </message>
+  <message name="AgentService_StartSessionRequest">
+    <part name="AgentLogin" type="xs:int" />
+  </message>
+  <message name="AgentService_StartSessionResponse">
+    <part name="Result" type="xs:int" />
+  </message>
+  <message name="AgentService_StopSessionRequest">
+    <part name="AgentLogin" type="xs:int" />
+    <part name="ReasonCode" type="xs:int" />
+  </message>
+  <message name="AgentService_StopSessionResponse">
+    <part name="Result" type="xs:int" />
+  </message>
+  <message name="AgentService_WaitForEventRequest">
+    <part name="AgentLogin" type="xs:int" />
+  </message>
+  <message name="AgentService_WaitForEventResponse">
+    <part name="Result" type="xs:boolean" />
+  </message>
+  <message name="AgentService_GetEventRequest">
+    <part name="AgentLogin" type="xs:int" />
+  </message>
+  <message name="AgentService_GetEventResponse">
+    <part name="Result" type="xs:int" />
+    <part name="Events" type="ro:TAgentEventList" />
+  </message>
+  <message name="AgentService_FinalizeContactRequest">
+    <part name="AgentLogin" type="xs:int" />
+    <part name="QInfo" type="ro:TWSQInfo" />
+  </message>
+  <message name="AgentService_FinalizeContactResponse">
+    <part name="Result" type="xs:int" />
+  </message>
+  <message name="AgentService_AnswerCallRequest">
+    <part name="AgentLogin" type="xs:int" />
+  </message>
+  <message name="AgentService_AnswerCallResponse">
+    <part name="Result" type="xs:int" />
+  </message>
+  <message name="AgentService_ClearCallRequest">
+    <part name="AgentLogin" type="xs:int" />
+  </message>
+  <message name="AgentService_ClearCallResponse">
+    <part name="Result" type="xs:int" />
+  </message>
+  <message name="AgentService_GetAgentNameRequest">
+    <part name="AgentLogin" type="xs:int" />
+  </message>
+  <message name="AgentService_GetAgentNameResponse">
+    <part name="Result" type="xs:int" />
+    <part name="AgentName" type="xs:string" />
+  </message>
+  <message name="AgentService_GetServerNameRequest">
+    <part name="AgentLogin" type="xs:int" />
+  </message>
+  <message name="AgentService_GetServerNameResponse">
+    <part name="Result" type="xs:int" />
+    <part name="ServerName" type="xs:string" />
+  </message>
+  <message name="AgentService_GetSessionInfoRequest">
+    <part name="AgentLogin" type="xs:int" />
+  </message>
+  <message name="AgentService_GetSessionInfoResponse">
+    <part name="Result" type="xs:int" />
+    <part name="SessionInfo" type="ro:TWSSessionInfo" />
+  </message>
+  <message name="AgentService_GetCurrentContactRequest">
+    <part name="AgentLogin" type="xs:int" />
+  </message>
+  <message name="AgentService_GetCurrentContactResponse">
+    <part name="Result" type="xs:int" />
+    <part name="AgentContact" type="ro:TWSAgentContact" />
+  </message>
+  <message name="AgentService_GetAgentStateRequest">
+    <part name="AgentLogin" type="xs:int" />
+  </message>
+  <message name="AgentService_GetAgentStateResponse">
+    <part name="Result" type="xs:int" />
+  </message>
+  <message name="AgentService_GetStopReasonsInfoRequest">
+    <part name="AgentLogin" type="xs:int" />
+  </message>
+  <message name="AgentService_GetStopReasonsInfoResponse">
+    <part name="Result" type="xs:int" />
+    <part name="ReasonsList" type="ro:TWSStopInfo" />
+  </message>
+  <message name="AgentService_GetLogoutReasonsInfoRequest">
+    <part name="AgentLogin" type="xs:int" />
+  </message>
+  <message name="AgentService_GetLogoutReasonsInfoResponse">
+    <part name="Result" type="xs:int" />
+    <part name="ReasonList" type="ro:TWSStopInfo" />
+  </message>
+  <message name="AgentService_GetInvalidQCodesInfoRequest">
+    <part name="AgentLogin" type="xs:int" />
+    <part name="ServiceID" type="xs:int" />
+  </message>
+  <message name="AgentService_GetInvalidQCodesInfoResponse">
+    <part name="Result" type="xs:int" />
+    <part name="QCodesInfo" type="ro:TWSQCodeInfo" />
+  </message>
+  <message name="AgentService_GetUnreachableQCodesInfoRequest">
+    <part name="AgentLogin" type="xs:int" />
+    <part name="ServiceID" type="xs:int" />
+  </message>
+  <message name="AgentService_GetUnreachableQCodesInfoResponse">
+    <part name="Result" type="xs:int" />
+    <part name="QCodesInfo" type="ro:TWSQCodeInfo" />
+  </message>
+  <message name="AgentService_GetValidQCodesCountRequest">
+    <part name="AgentLogin" type="xs:int" />
+    <part name="ServiceID" type="xs:int" />
+    <part name="Group" type="xs:int" />
+  </message>
+  <message name="AgentService_GetValidQCodesCountResponse">
+    <part name="Result" type="xs:int" />
+    <part name="NumQCodes" type="xs:int" />
+  </message>
+  <message name="AgentService_GetValidQCodesAtRequest">
+    <part name="AgentLogin" type="xs:int" />
+    <part name="ServiceID" type="xs:int" />
+    <part name="Group" type="xs:int" />
+    <part name="Index" type="xs:int" />
+  </message>
+  <message name="AgentService_GetValidQCodesAtResponse">
+    <part name="Result" type="xs:int" />
+    <part name="QCodeInfo" type="ro:TWSQCode" />
+  </message>
+  <message name="AgentService_GetCurrentAgentInboundContactRequest">
+    <part name="AgentLogin" type="xs:int" />
+  </message>
+  <message name="AgentService_GetCurrentAgentInboundContactResponse">
+    <part name="Result" type="xs:int" />
+    <part name="InboundContact" type="ro:TWSAgentContactInbound" />
+  </message>
+  <message name="AgentService_GetCurrentAgentOutboundContactRequest">
+    <part name="AgentLogin" type="xs:int" />
+  </message>
+  <message name="AgentService_GetCurrentAgentOutboundContactResponse">
+    <part name="Result" type="xs:int" />
+    <part name="OutboundContact" type="ro:TWSAgentContactOutbound" />
+  </message>
+  <message name="AgentService_RecordOnDemandStartRequest">
+    <part name="AgentLogin" type="xs:int" />
+    <part name="AppData" type="xs:string" />
+  </message>
+  <message name="AgentService_RecordOnDemandStartResponse">
+    <part name="Result" type="xs:int" />
+    <part name="RecordId" type="xs:int" />
+  </message>
+  <message name="AgentService_RecordOnDemandStopRequest">
+    <part name="AgentLogin" type="xs:int" />
+    <part name="RecordId" type="xs:int" />
+  </message>
+  <message name="AgentService_RecordOnDemandStopResponse">
+    <part name="Result" type="xs:int" />
+  </message>
+  <message name="AgentService_MakeCallRequest">
+    <part name="AgentLogin" type="xs:int" />
+    <part name="Phone" type="xs:string" />
+  </message>
+  <message name="AgentService_MakeCallResponse">
+    <part name="Result" type="xs:int" />
+  </message>
+  <message name="AgentService_ConsultationCallRequest">
+    <part name="AgentLogin" type="xs:int" />
+    <part name="CalledPhone" type="xs:string" />
+    <part name="ActiveCallID" type="xs:int" />
+    <part name="ConsultType" type="xs:int" />
+  </message>
+  <message name="AgentService_ConsultationCallResponse">
+    <part name="Result" type="xs:int" />
+    <part name="Call" type="ro:TWSCall" />
+  </message>
+  <message name="AgentService_TransferCallRequest">
+    <part name="AgentLogin" type="xs:int" />
+    <part name="CallID" type="xs:int" />
+  </message>
+  <message name="AgentService_TransferCallResponse">
+    <part name="Result" type="xs:int" />
+  </message>
+  <message name="AgentService_ConferenceCallRequest">
+    <part name="AgentLogin" type="xs:int" />
+    <part name="CallID" type="xs:int" />
+  </message>
+  <message name="AgentService_ConferenceCallResponse">
+    <part name="Result" type="xs:int" />
+  </message>
+  <message name="AgentService_SendTonesRequest">
+    <part name="AgentLogin" type="xs:int" />
+    <part name="CallID" type="xs:int" />
+    <part name="Tones" type="xs:string" />
+  </message>
+  <message name="AgentService_SendTonesResponse">
+    <part name="Result" type="xs:int" />
+  </message>
+  <message name="AgentService_ContactCallRequest">
+    <part name="AgentLogin" type="xs:int" />
+  </message>
+  <message name="AgentService_ContactCallResponse">
+    <part name="Result" type="xs:int" />
+  </message>
+  <message name="AgentService_ClearAllCallsRequest">
+    <part name="AgentLogin" type="xs:int" />
+  </message>
+  <message name="AgentService_ClearAllCallsResponse">
+    <part name="Result" type="xs:int" />
+  </message>
+  <portType name="AgentService">
+    <operation name="Sum">
+      <input message="tns:AgentService_SumRequest" />
+      <output message="tns:AgentService_SumResponse" />
+    </operation>
+    <operation name="GetServerTime">
+      <input message="tns:AgentService_GetServerTimeRequest" />
+      <output message="tns:AgentService_GetServerTimeResponse" />
+    </operation>
+    <operation name="Login">
+      <input message="tns:AgentService_LoginRequest" />
+      <output message="tns:AgentService_LoginResponse" />
+    </operation>
+    <operation name="Logout">
+      <input message="tns:AgentService_LogoutRequest" />
+      <output message="tns:AgentService_LogoutResponse" />
+    </operation>
+    <operation name="StartSession">
+      <input message="tns:AgentService_StartSessionRequest" />
+      <output message="tns:AgentService_StartSessionResponse" />
+    </operation>
+    <operation name="StopSession">
+      <input message="tns:AgentService_StopSessionRequest" />
+      <output message="tns:AgentService_StopSessionResponse" />
+    </operation>
+    <operation name="WaitForEvent">
+      <input message="tns:AgentService_WaitForEventRequest" />
+      <output message="tns:AgentService_WaitForEventResponse" />
+    </operation>
+    <operation name="GetEvent">
+      <input message="tns:AgentService_GetEventRequest" />
+      <output message="tns:AgentService_GetEventResponse" />
+    </operation>
+    <operation name="FinalizeContact">
+      <input message="tns:AgentService_FinalizeContactRequest" />
+      <output message="tns:AgentService_FinalizeContactResponse" />
+    </operation>
+    <operation name="AnswerCall">
+      <input message="tns:AgentService_AnswerCallRequest" />
+      <output message="tns:AgentService_AnswerCallResponse" />
+    </operation>
+    <operation name="ClearCall">
+      <input message="tns:AgentService_ClearCallRequest" />
+      <output message="tns:AgentService_ClearCallResponse" />
+    </operation>
+    <operation name="GetAgentName">
+      <input message="tns:AgentService_GetAgentNameRequest" />
+      <output message="tns:AgentService_GetAgentNameResponse" />
+    </operation>
+    <operation name="GetServerName">
+      <input message="tns:AgentService_GetServerNameRequest" />
+      <output message="tns:AgentService_GetServerNameResponse" />
+    </operation>
+    <operation name="GetSessionInfo">
+      <input message="tns:AgentService_GetSessionInfoRequest" />
+      <output message="tns:AgentService_GetSessionInfoResponse" />
+    </operation>
+    <operation name="GetCurrentContact">
+      <input message="tns:AgentService_GetCurrentContactRequest" />
+      <output message="tns:AgentService_GetCurrentContactResponse" />
+    </operation>
+    <operation name="GetAgentState">
+      <input message="tns:AgentService_GetAgentStateRequest" />
+      <output message="tns:AgentService_GetAgentStateResponse" />
+    </operation>
+    <operation name="GetStopReasonsInfo">
+      <input message="tns:AgentService_GetStopReasonsInfoRequest" />
+      <output message="tns:AgentService_GetStopReasonsInfoResponse" />
+    </operation>
+    <operation name="GetLogoutReasonsInfo">
+      <input message="tns:AgentService_GetLogoutReasonsInfoRequest" />
+      <output message="tns:AgentService_GetLogoutReasonsInfoResponse" />
+    </operation>
+    <operation name="GetInvalidQCodesInfo">
+      <input message="tns:AgentService_GetInvalidQCodesInfoRequest" />
+      <output message="tns:AgentService_GetInvalidQCodesInfoResponse" />
+    </operation>
+    <operation name="GetUnreachableQCodesInfo">
+      <input message="tns:AgentService_GetUnreachableQCodesInfoRequest" />
+      <output message="tns:AgentService_GetUnreachableQCodesInfoResponse" />
+    </operation>
+    <operation name="GetValidQCodesCount">
+      <input message="tns:AgentService_GetValidQCodesCountRequest" />
+      <output message="tns:AgentService_GetValidQCodesCountResponse" />
+    </operation>
+    <operation name="GetValidQCodesAt">
+      <input message="tns:AgentService_GetValidQCodesAtRequest" />
+      <output message="tns:AgentService_GetValidQCodesAtResponse" />
+    </operation>
+    <operation name="GetCurrentAgentInboundContact">
+      <input message="tns:AgentService_GetCurrentAgentInboundContactRequest" />
+      <output message="tns:AgentService_GetCurrentAgentInboundContactResponse" />
+    </operation>
+    <operation name="GetCurrentAgentOutboundContact">
+      <input message="tns:AgentService_GetCurrentAgentOutboundContactRequest" />
+      <output message="tns:AgentService_GetCurrentAgentOutboundContactResponse" />
+    </operation>
+    <operation name="RecordOnDemandStart">
+      <input message="tns:AgentService_RecordOnDemandStartRequest" />
+      <output message="tns:AgentService_RecordOnDemandStartResponse" />
+    </operation>
+    <operation name="RecordOnDemandStop">
+      <input message="tns:AgentService_RecordOnDemandStopRequest" />
+      <output message="tns:AgentService_RecordOnDemandStopResponse" />
+    </operation>
+    <operation name="MakeCall">
+      <input message="tns:AgentService_MakeCallRequest" />
+      <output message="tns:AgentService_MakeCallResponse" />
+    </operation>
+    <operation name="ConsultationCall">
+      <input message="tns:AgentService_ConsultationCallRequest" />
+      <output message="tns:AgentService_ConsultationCallResponse" />
+    </operation>
+    <operation name="TransferCall">
+      <input message="tns:AgentService_TransferCallRequest" />
+      <output message="tns:AgentService_TransferCallResponse" />
+    </operation>
+    <operation name="ConferenceCall">
+      <input message="tns:AgentService_ConferenceCallRequest" />
+      <output message="tns:AgentService_ConferenceCallResponse" />
+    </operation>
+    <operation name="SendTones">
+      <input message="tns:AgentService_SendTonesRequest" />
+      <output message="tns:AgentService_SendTonesResponse" />
+    </operation>
+    <operation name="ContactCall">
+      <input message="tns:AgentService_ContactCallRequest" />
+      <output message="tns:AgentService_ContactCallResponse" />
+    </operation>
+    <operation name="ClearAllCalls">
+      <input message="tns:AgentService_ClearAllCallsRequest" />
+      <output message="tns:AgentService_ClearAllCallsResponse" />
+    </operation>
+  </portType>
+  <binding name="AgentServiceBinding" type="tns:AgentService">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="rpc" />
+    <operation name="Sum">
+      <soap:operation soapAction="urn:AgentLibrary-AgentService#Sum" style="rpc" />
+      <input>
+        <soap:body use="encoded" namespace="urn:AgentLibrary-AgentService" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </input>
+      <output>
+        <soap:body use="encoded" namespace="urn:AgentLibrary-AgentService" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </output>
+    </operation>
+    <operation name="GetServerTime">
+      <soap:operation soapAction="urn:AgentLibrary-AgentService#GetServerTime" style="rpc" />
+      <input>
+        <soap:body use="encoded" namespace="urn:AgentLibrary-AgentService" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </input>
+      <output>
+        <soap:body use="encoded" namespace="urn:AgentLibrary-AgentService" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </output>
+    </operation>
+    <operation name="Login">
+      <soap:operation soapAction="urn:AgentLibrary-AgentService#Login" style="rpc" />
+      <input>
+        <soap:body use="encoded" namespace="urn:AgentLibrary-AgentService" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </input>
+      <output>
+        <soap:body use="encoded" namespace="urn:AgentLibrary-AgentService" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </output>
+    </operation>
+    <operation name="Logout">
+      <soap:operation soapAction="urn:AgentLibrary-AgentService#Logout" style="rpc" />
+      <input>
+        <soap:body use="encoded" namespace="urn:AgentLibrary-AgentService" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </input>
+      <output>
+        <soap:body use="encoded" namespace="urn:AgentLibrary-AgentService" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </output>
+    </operation>
+    <operation name="StartSession">
+      <soap:operation soapAction="urn:AgentLibrary-AgentService#StartSession" style="rpc" />
+      <input>
+        <soap:body use="encoded" namespace="urn:AgentLibrary-AgentService" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </input>
+      <output>
+        <soap:body use="encoded" namespace="urn:AgentLibrary-AgentService" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </output>
+    </operation>
+    <operation name="StopSession">
+      <soap:operation soapAction="urn:AgentLibrary-AgentService#StopSession" style="rpc" />
+      <input>
+        <soap:body use="encoded" namespace="urn:AgentLibrary-AgentService" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </input>
+      <output>
+        <soap:body use="encoded" namespace="urn:AgentLibrary-AgentService" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </output>
+    </operation>
+    <operation name="WaitForEvent">
+      <soap:operation soapAction="urn:AgentLibrary-AgentService#WaitForEvent" style="rpc" />
+      <input>
+        <soap:body use="encoded" namespace="urn:AgentLibrary-AgentService" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </input>
+      <output>
+        <soap:body use="encoded" namespace="urn:AgentLibrary-AgentService" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </output>
+    </operation>
+    <operation name="GetEvent">
+      <soap:operation soapAction="urn:AgentLibrary-AgentService#GetEvent" style="rpc" />
+      <input>
+        <soap:body use="encoded" namespace="urn:AgentLibrary-AgentService" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </input>
+      <output>
+        <soap:body use="encoded" namespace="urn:AgentLibrary-AgentService" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </output>
+    </operation>
+    <operation name="FinalizeContact">
+      <soap:operation soapAction="urn:AgentLibrary-AgentService#FinalizeContact" style="rpc" />
+      <input>
+        <soap:body use="encoded" namespace="urn:AgentLibrary-AgentService" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </input>
+      <output>
+        <soap:body use="encoded" namespace="urn:AgentLibrary-AgentService" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </output>
+    </operation>
+    <operation name="AnswerCall">
+      <soap:operation soapAction="urn:AgentLibrary-AgentService#AnswerCall" style="rpc" />
+      <input>
+        <soap:body use="encoded" namespace="urn:AgentLibrary-AgentService" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </input>
+      <output>
+        <soap:body use="encoded" namespace="urn:AgentLibrary-AgentService" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </output>
+    </operation>
+    <operation name="ClearCall">
+      <soap:operation soapAction="urn:AgentLibrary-AgentService#ClearCall" style="rpc" />
+      <input>
+        <soap:body use="encoded" namespace="urn:AgentLibrary-AgentService" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </input>
+      <output>
+        <soap:body use="encoded" namespace="urn:AgentLibrary-AgentService" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </output>
+    </operation>
+    <operation name="GetAgentName">
+      <soap:operation soapAction="urn:AgentLibrary-AgentService#GetAgentName" style="rpc" />
+      <input>
+        <soap:body use="encoded" namespace="urn:AgentLibrary-AgentService" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </input>
+      <output>
+        <soap:body use="encoded" namespace="urn:AgentLibrary-AgentService" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </output>
+    </operation>
+    <operation name="GetServerName">
+      <soap:operation soapAction="urn:AgentLibrary-AgentService#GetServerName" style="rpc" />
+      <input>
+        <soap:body use="encoded" namespace="urn:AgentLibrary-AgentService" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </input>
+      <output>
+        <soap:body use="encoded" namespace="urn:AgentLibrary-AgentService" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </output>
+    </operation>
+    <operation name="GetSessionInfo">
+      <soap:operation soapAction="urn:AgentLibrary-AgentService#GetSessionInfo" style="rpc" />
+      <input>
+        <soap:body use="encoded" namespace="urn:AgentLibrary-AgentService" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </input>
+      <output>
+        <soap:body use="encoded" namespace="urn:AgentLibrary-AgentService" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </output>
+    </operation>
+    <operation name="GetCurrentContact">
+      <soap:operation soapAction="urn:AgentLibrary-AgentService#GetCurrentContact" style="rpc" />
+      <input>
+        <soap:body use="encoded" namespace="urn:AgentLibrary-AgentService" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </input>
+      <output>
+        <soap:body use="encoded" namespace="urn:AgentLibrary-AgentService" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </output>
+    </operation>
+    <operation name="GetAgentState">
+      <soap:operation soapAction="urn:AgentLibrary-AgentService#GetAgentState" style="rpc" />
+      <input>
+        <soap:body use="encoded" namespace="urn:AgentLibrary-AgentService" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </input>
+      <output>
+        <soap:body use="encoded" namespace="urn:AgentLibrary-AgentService" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </output>
+    </operation>
+    <operation name="GetStopReasonsInfo">
+      <soap:operation soapAction="urn:AgentLibrary-AgentService#GetStopReasonsInfo" style="rpc" />
+      <input>
+        <soap:body use="encoded" namespace="urn:AgentLibrary-AgentService" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </input>
+      <output>
+        <soap:body use="encoded" namespace="urn:AgentLibrary-AgentService" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </output>
+    </operation>
+    <operation name="GetLogoutReasonsInfo">
+      <soap:operation soapAction="urn:AgentLibrary-AgentService#GetLogoutReasonsInfo" style="rpc" />
+      <input>
+        <soap:body use="encoded" namespace="urn:AgentLibrary-AgentService" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </input>
+      <output>
+        <soap:body use="encoded" namespace="urn:AgentLibrary-AgentService" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </output>
+    </operation>
+    <operation name="GetInvalidQCodesInfo">
+      <soap:operation soapAction="urn:AgentLibrary-AgentService#GetInvalidQCodesInfo" style="rpc" />
+      <input>
+        <soap:body use="encoded" namespace="urn:AgentLibrary-AgentService" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </input>
+      <output>
+        <soap:body use="encoded" namespace="urn:AgentLibrary-AgentService" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </output>
+    </operation>
+    <operation name="GetUnreachableQCodesInfo">
+      <soap:operation soapAction="urn:AgentLibrary-AgentService#GetUnreachableQCodesInfo" style="rpc" />
+      <input>
+        <soap:body use="encoded" namespace="urn:AgentLibrary-AgentService" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </input>
+      <output>
+        <soap:body use="encoded" namespace="urn:AgentLibrary-AgentService" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </output>
+    </operation>
+    <operation name="GetValidQCodesCount">
+      <soap:operation soapAction="urn:AgentLibrary-AgentService#GetValidQCodesCount" style="rpc" />
+      <input>
+        <soap:body use="encoded" namespace="urn:AgentLibrary-AgentService" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </input>
+      <output>
+        <soap:body use="encoded" namespace="urn:AgentLibrary-AgentService" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </output>
+    </operation>
+    <operation name="GetValidQCodesAt">
+      <soap:operation soapAction="urn:AgentLibrary-AgentService#GetValidQCodesAt" style="rpc" />
+      <input>
+        <soap:body use="encoded" namespace="urn:AgentLibrary-AgentService" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </input>
+      <output>
+        <soap:body use="encoded" namespace="urn:AgentLibrary-AgentService" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </output>
+    </operation>
+    <operation name="GetCurrentAgentInboundContact">
+      <soap:operation soapAction="urn:AgentLibrary-AgentService#GetCurrentAgentInboundContact" style="rpc" />
+      <input>
+        <soap:body use="encoded" namespace="urn:AgentLibrary-AgentService" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </input>
+      <output>
+        <soap:body use="encoded" namespace="urn:AgentLibrary-AgentService" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </output>
+    </operation>
+    <operation name="GetCurrentAgentOutboundContact">
+      <soap:operation soapAction="urn:AgentLibrary-AgentService#GetCurrentAgentOutboundContact" style="rpc" />
+      <input>
+        <soap:body use="encoded" namespace="urn:AgentLibrary-AgentService" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </input>
+      <output>
+        <soap:body use="encoded" namespace="urn:AgentLibrary-AgentService" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </output>
+    </operation>
+    <operation name="RecordOnDemandStart">
+      <soap:operation soapAction="urn:AgentLibrary-AgentService#RecordOnDemandStart" style="rpc" />
+      <input>
+        <soap:body use="encoded" namespace="urn:AgentLibrary-AgentService" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </input>
+      <output>
+        <soap:body use="encoded" namespace="urn:AgentLibrary-AgentService" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </output>
+    </operation>
+    <operation name="RecordOnDemandStop">
+      <soap:operation soapAction="urn:AgentLibrary-AgentService#RecordOnDemandStop" style="rpc" />
+      <input>
+        <soap:body use="encoded" namespace="urn:AgentLibrary-AgentService" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </input>
+      <output>
+        <soap:body use="encoded" namespace="urn:AgentLibrary-AgentService" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </output>
+    </operation>
+    <operation name="MakeCall">
+      <soap:operation soapAction="urn:AgentLibrary-AgentService#MakeCall" style="rpc" />
+      <input>
+        <soap:body use="encoded" namespace="urn:AgentLibrary-AgentService" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </input>
+      <output>
+        <soap:body use="encoded" namespace="urn:AgentLibrary-AgentService" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </output>
+    </operation>
+    <operation name="ConsultationCall">
+      <soap:operation soapAction="urn:AgentLibrary-AgentService#ConsultationCall" style="rpc" />
+      <input>
+        <soap:body use="encoded" namespace="urn:AgentLibrary-AgentService" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </input>
+      <output>
+        <soap:body use="encoded" namespace="urn:AgentLibrary-AgentService" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </output>
+    </operation>
+    <operation name="TransferCall">
+      <soap:operation soapAction="urn:AgentLibrary-AgentService#TransferCall" style="rpc" />
+      <input>
+        <soap:body use="encoded" namespace="urn:AgentLibrary-AgentService" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </input>
+      <output>
+        <soap:body use="encoded" namespace="urn:AgentLibrary-AgentService" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </output>
+    </operation>
+    <operation name="ConferenceCall">
+      <soap:operation soapAction="urn:AgentLibrary-AgentService#ConferenceCall" style="rpc" />
+      <input>
+        <soap:body use="encoded" namespace="urn:AgentLibrary-AgentService" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </input>
+      <output>
+        <soap:body use="encoded" namespace="urn:AgentLibrary-AgentService" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </output>
+    </operation>
+    <operation name="SendTones">
+      <soap:operation soapAction="urn:AgentLibrary-AgentService#SendTones" style="rpc" />
+      <input>
+        <soap:body use="encoded" namespace="urn:AgentLibrary-AgentService" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </input>
+      <output>
+        <soap:body use="encoded" namespace="urn:AgentLibrary-AgentService" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </output>
+    </operation>
+    <operation name="ContactCall">
+      <soap:operation soapAction="urn:AgentLibrary-AgentService#ContactCall" style="rpc" />
+      <input>
+        <soap:body use="encoded" namespace="urn:AgentLibrary-AgentService" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </input>
+      <output>
+        <soap:body use="encoded" namespace="urn:AgentLibrary-AgentService" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </output>
+    </operation>
+    <operation name="ClearAllCalls">
+      <soap:operation soapAction="urn:AgentLibrary-AgentService#ClearAllCalls" style="rpc" />
+      <input>
+        <soap:body use="encoded" namespace="urn:AgentLibrary-AgentService" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </input>
+      <output>
+        <soap:body use="encoded" namespace="urn:AgentLibrary-AgentService" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </output>
+    </operation>
+  </binding>
+  <service name="AgentServiceService">
+    <documentation>Service AgentService. This service has been automatically generated using the RODL template you can find in the Templates directory.</documentation>
+    <port name="AgentServicePort" binding="tns:AgentServiceBinding">
+      <soap:address location="http://localhost/AgentWS/pcoagentws.dll/SOAP" />
+    </port>
+  </service>
+</definitions>
